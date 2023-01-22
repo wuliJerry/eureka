@@ -20,7 +20,7 @@ class GeneralPurposeRegister extends Module {
   when (io.writeIdx === 0.U(5.W)) {
     io.writeData := DontCare
   } .otherwise {
-    generalPurposeRegister(io.writeIdx) := Mux(io.writeEnable, generalPurposeRegister(io.writeIdx), io.writeData)
+    generalPurposeRegister(io.writeIdx) := Mux(!io.writeEnable, generalPurposeRegister(io.writeIdx), io.writeData)
   }
 
   io.readDataA := generalPurposeRegister(io.readIdxA)
